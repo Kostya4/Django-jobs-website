@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="my-3 p-3 bg-body rounded shadow-sm">
+    <h6 class="border-bottom pb-2 mb-0">All Vacancies</h6>
+    <div style=" display: flex; flex-direction: row; justify-content: flex-start;">
+        <div class="card mt-2" style="width: 25%; height: 500px;">
+            search-block
+        </div>
+
+        <div style=" margin-left: auto; margin-right: 5%; width: 65%;">
+            {% for vacancy in vacancies %}
+                <div class="card mt-2">
+                  <div class="card-body">
+                    <h5 class="card-title">{{vacancy.title}}</h5>
+                    <p style="color: grey; margin-left: auto; margin-right: 1%; margin-top: -5%; float: right;">{{ vacancy.updated_at|date:"DATETIME_FORMAT"}} </p>
+                          <div style="display: flex; margin: 1%;">
+                              <img src="{% static 'works/img/icons8-company-32.png' %}" alt="no">
+                              <p class="card-text" style="margin-left: 1%; margin-top: 0.5%;">
+                                  <span style="color: grey; margin-right: 5px;">Company:</span> {{ vacancy.company }}</p>
+                          </div>
+                     {% if vacancy.location %}
+                          <div style="display: flex; margin: 1%;">
+                              <img src="{% static 'works/img/icons8-location-32.png' %}" alt="no">
+                              <p class="card-text" style="margin-left: 1%; margin-top: 0.5%;"><span style="color: grey; margin-right: 5px;">Location:</span> {{ vacancy.location }}</p>
+                          </div>
+                     {% endif %}
+                          <div style="display: flex; margin: 1%;">
+                              <img src="{% static 'works/img/icons8-internship-32.png' %}" alt="no">
+                              <p class="card-text" style="margin-left: 1%; margin-top: 0.5%;"><span style="color: grey; margin-right: 5px;">Experience:</span> {{ vacancy.experience }}</p>
+                          </div>
+                      {% if vacancy.get_salary %}
+                          <div style="display: flex; margin: 1%;">
+                              <img src="{% static 'works/img/icons8-salary-32.png' %}" alt="no">
+                              <p class="card-text" style="margin-left: 1%; margin-top: 0.5%;"><span style="color: grey; margin-right: 5px;">Salary:</span> {{ vacancy.get_salary }}</p>
+                          </div>
+                      {% endif %}
+                  </div>
+                    <a href="{{ vacancy.get_absolute_url }}" class="btn bth-primary" style="width: 15%; margin-bottom: 1%; margin-left: 1%; background-color: Lavender;">More info</a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

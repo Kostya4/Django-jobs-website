@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css_additional %}
+    <link rel="stylesheet" href="{% static 'works/css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+<div style="height: 100%;">
+<img src="{% static 'works/images/photo.jpg' %}" alt="Test" style=" width: 100%; height: 70%; z-index: -2; position: absolute;
+filter: brightness(40%);">
+</div>
+
+<div class="my-container">
+
+    <div>
+        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+            <div class="search-container">
+                <input type="search"
+                       class="search-label form-control text-bg-light" placeholder="Search..." aria-label="Search">
+            </div>
+            <button type="submit" class="search-submit-btn">Find job</button>
+        </form>
+        <a href="#"><button class="btn btn-secondary wide-search-btn">W</button></a>
+    </div>
+
+    <div class="div-search-employee">
+        <a href="#" class="search-employee">Search for an employee</a>
+    </div>
+
+<div style="margin-top: 10%; color: white;">vacancies_count</div>
+<div style="color: white;">companies_count</div>
+</div>
+{% endblock %}

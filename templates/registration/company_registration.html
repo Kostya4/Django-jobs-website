@@ -1,0 +1,60 @@
+<!-- Пока не используется -->
+
+
+
+<div class="modal fade" id="createCompanyModal" tabindex="-1"  role="dialog" aria-labelledby="exampleModalLabel">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <div class="modal-content rounded-4 shadow">
+                      <div class="modal-header m-auto p-3 pb-3 border-bottom-0">
+                        <h1 class="fw-bold mb-0 fs-2">Create company</h1>
+<!--                        <button type="button" class="btn-close pl-5 ml-5" data-bs-dismiss="modal" aria-label="Close"></button>-->
+                      </div>
+
+                      <div class="modal-body p-4 pt-0">
+                            <div>
+                                <div class="" style="text-align: left;">
+                                    {% if user_form.errors %}
+                                        <div class="alert alert-danger" >
+                                            <strong>Error!</strong>{{user_form.errors}}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <form>
+
+                              <div class="input-group mb-3 mt-3">
+                                <span class="input-group-text" style="width: 22%; color:gray;">Title*</span>
+                                <input type="text" class="form-control" placeholder="ex. Cremas" required>
+                              </div>
+
+                              <div class="input-group mt-3">
+                                <span class="input-group-text" style="width: 22%; color:gray;">Location</span>
+                                <input type="text" class="form-control" id="location" placeholder="ex. Belarus, Minsk">
+                              </div>
+                              <div class="input-group mt-3">
+                                  <span class="input-group-text" style="width: 22%; color:gray;" >Description*</span>
+                                  <textarea class="form-control"
+                                          style="height: 10px;"
+                                          aria-label="With textarea"
+                                          placeholder="ex. Responsibilities, required skills, etc"
+                                          required></textarea>
+                              </div>
+
+                              <div class="input-group mt-3">
+                                  <label class="input-group-text" for="inputGroupFile01" style="width: 22%; color:gray;">Logo</label>
+                                  <input type="file" class="form-control" id="inputGroupFile01"  lang="en">
+                              </div>
+
+
+
+
+                                <button class="w-100 mb-3 mt-3 btn btn-lg rounded-3 btn-primary" type="submit">Create</button>
+                            </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>

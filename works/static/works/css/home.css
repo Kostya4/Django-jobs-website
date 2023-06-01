@@ -1,0 +1,49 @@
+.my-container {
+    margin: auto;
+    vertical-align: middle;
+    margin-top: 12%;
+    width: 60%;
+    height: 20%;
+    z-index: 4;
+
+}
+
+.search-container {
+    width: 84%;
+    float: left;
+}
+
+.search-submit-btn {
+    width: 10%;
+    margin-left: 1%;
+    float: left;
+    background: BlueViolet;
+    height: 37px;
+    border-radius: 5px;
+    color: white;
+    border: 0;
+
+}
+
+.search-submit-btn:hover {
+    opacity: 85%;
+}
+
+.wide-search-btn {
+    width: 5%;
+    margin-left: 1%;
+}
+
+.div-search-employee {
+    margin-top: 10px;
+}
+
+.search-employee {
+    margin: 10px;
+    padding-top: 10px;
+    color: white;
+}
+
+.search-employee:hover {
+    color: MediumPurple;
+}

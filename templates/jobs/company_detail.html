@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>company_name = {{ company.name }}</div>
+<div>company_office = {{ company.office_loc }}</div>
+<div>company_description = {{ company.description }}</div>
+<div>company_logo = {{ company.logo.value }}</div>
+<div>company_vacancies = {% for vacancy in company.vacancies.all %} {{ vacancy }} {% endfor %}
+
+</div>
+<div>user_vacancies = {{ user.all_vacancies.all }}</div>
+{% endblock %}

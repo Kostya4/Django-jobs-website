@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="bd-example-snippet bd-code-snippet" style="width: 35%; text-align: center; margin: auto;">
+  <div class="bd-example">
+        <form method="POST">
+          {% csrf_token %}
+          <div class="m-3">
+            {{ company_name }}
+          </div>
+
+          <div class="input-group mb-3 mt-3">
+            <span class="input-group-text" style="width: 22%; color:gray;">Title*</span>
+            <input type="text"
+                   class="form-control"
+                   placeholder="ex. Junior Python Developer"
+                   name="title"
+                   value="{{vacancy_form.title.value}}"
+                   required>
+          </div>
+
+          <div class="input-group mt-3">
+            <span class="input-group-text" style="width: 22%; color:gray;">Category*</span>
+            <select class="form-select"
+                    id="categorySelect"
+                    style="color: gray;"
+                    name="work_sphere"
+                    required>
+            <option value="" disabled selected hidden>Select option</option>
+              {% for sphere in user.get_all_spheres %}
+                <option value="{{sphere.id}}">{{sphere}}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="input-group mt-3">
+            <span class="input-group-text" style="width: 22%; color:gray;">Schedule*</span>
+            <select class="form-select"
+                    id="scheduleSelect"
+                    style="color: gray;"
+                    name="schedule"
+                    required>
+              <option value="" disabled selected hidden>Select option</option>
+              {% for schedule in user.get_all_schedules %}
+                <option value="{{schedule.id}}">{{schedule}}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="input-group mt-3">
+            <span class="input-group-text" style="width: 22%; color:gray;">Experience*</span>
+            <select class="form-select"
+                    id="experienceSelect"
+                    style="color: gray;"
+                    name="experience"
+                    required>
+            <option value="" disabled selected hidden>Select option</option>
+              {% for experience in user.get_all_experiences %}
+                <option value="{{experience.id}}">{{experience}}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="input-group mt-3">
+            <span class="input-group-text" style="width: 22%; color:gray;">Employment*</span>
+            <select class="form-select"
+                    id="employmentSelect"
+                    style="color: gray;"
+                    name="employment"
+                    required>
+            <option value="" disabled selected hidden>Select option</option>
+              {% for employment in user.get_all_employments %}
+                <option value="{{employment.id}}">{{employment}}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+           <div class="input-group mt-3">
+              <span class="input-group-text" style="width: 22%; color:gray;" >Description*</span>
+              <textarea class="form-control"
+                      style="height: 10px;"
+                      aria-label="With textarea"
+                      placeholder="ex. Responsibilities, required skills, etc"
+                      name="description"
+                      required></textarea>
+           </div>
+
+          <div class="input-group mt-3" >
+            <span class="input-group-text" style="width: 22%; color:gray;">Salary</span>
+            <span class="input-group-text" style="width: 12%; color:gray;">From</span>
+            <input type="text" class="form-control" id="low_salary">
+            <span class="input-group-text" style="width: 8%; color:gray;">To</span>
+            <input type="text" class="form-control" id="high_salary">
+            <select class="form-select" id="currencySelect" style="color: gray;">
+              <option value="" disabled selected hidden>Select</option>
+                {% for currency in user.get_all_currencies%}
+                  <option value="{{currency.id}}">{{currency}}</option>
+                {% endfor %}
+            </select>
+          </div>
+
+          <div class="input-group mt-3">
+            <span class="input-group-text" style="width: 22%; color:gray;">Location</span>
+            <input type="text" class="form-control" id="location" placeholder="ex. Belarus, Minsk, Starkovskay 11">
+          </div>
+
+
+          <div class="input-group mt-3" style="display: flex; display-direction: column;">
+            <span class="input-group-text" style="width: 22%;color:gray;">Contacts</span>
+            <div style="width: 78%;">
+              <input type="email" placeholder="Email" class="form-control" style="width: 100%;" id="email">
+            <input type="text" placeholder="Phone number" class="form-control"  id="phone_number">
+            <input type="text" placeholder="Telegram" class="form-control"  id="telegram_name">
+            <input type="text" placeholder="LinkedIn" class="form-control"  id="linkedIn_name">
+            </div>
+
+          </div>
+
+          <button type="submit" class="btn btn-primary m-3">Submit</button>
+        </form>
+  </div>
+</div>
+{% endblock %}

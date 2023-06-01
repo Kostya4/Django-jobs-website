@@ -1,0 +1,62 @@
+<div class="modal fade" id="SignUpModal" tabindex="-1"  role="dialog" aria-labelledby="exampleModalLabel">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <div class="modal-content rounded-4 shadow">
+                      <div class="modal-header m-auto p-3 pb-3 border-bottom-0">
+                        <h1 class="fw-bold mb-0 fs-2">Sign up</h1>
+<!--                        <button type="button" class="btn-close pl-5 ml-5" data-bs-dismiss="modal" aria-label="Close"></button>-->
+                      </div>
+
+                      <div class="modal-body p-4 pt-0">
+                            <div class="" >
+                                <div class="" style="text-align: left;">
+                                    {% if user_form.errors %}
+                                        <div class="alert alert-danger" >
+                                            <strong>Error!</strong>{{user_form.errors}}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <form method="post" action="{% url 'signup' %}" class="pt-2" enctype="multipart/form-data">
+                                {% csrf_token %}
+
+                                <div class="form-floating mb-2">
+                                    <input type="email" id="email" name="email" class="form-control" placeholder="name@example.com"
+                                           value="{{ user_form.email.value }}" required>
+                                    <label for="email">Email address</label>
+                                </div>
+
+                                <div class="form-floating mb-2">
+                                    <input type="text" id="name" name="first_name" class="form-control" placeholder="Your name"
+                                           value="{{ user_form.first_name.value }}" required>
+                                    <label for="name">Your name</label>
+                                </div>
+
+                                <div class="form-floating mb-2">
+                                    <input type="text" id="surname" name="last_name" class="form-control" placeholder="Your surname"
+                                           value="{{ user_form.last_name.value }}" required>
+                                    <label for="surname">Your surname</label>
+                                </div>
+
+                                <div class="form-floating mb-2">
+                                  <input type="password" id="password1" name="password1" class="form-control" placeholder="Password" required>
+                                    <label for="password1">Password</label>
+                                </div>
+
+                                <div class="form-floating mb-3">
+                                    <input type="password" id="password2" name="password2" class="form-control"
+                                           placeholder="Repeat your password" required>
+                                    <label for="password2">Repeat your password</label>
+                                </div>
+
+
+                          <button class="w-100 mb-3 mt-3 btn btn-lg rounded-3 btn-primary" type="submit">Sign up</button>
+<!--                          <a href="{% url 'login' %}">I already have an account</a>-->
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>

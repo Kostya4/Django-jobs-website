@@ -1,0 +1,102 @@
+<div class="modal fade" id="createVacancyModal" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Choose company</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+         <form method="post" action="{% url 'choose-company' %}" class="pt-2" enctype="multipart/form-data">
+              {% csrf_token %}
+              <input type="search"
+                     class="search-label form-control text-bg-light"
+                     list="datalistOptions"
+                     id="exampleDataList"
+                     placeholder="Type the title of company"
+                     name="name"
+                     value="{{ company_form.name }}"
+                     required>
+
+              <datalist id="datalistOptions">
+                  {% for company in user.get_all_companies %}
+                      <option value="{{ company.name }}">
+                  {% endfor %}
+              </datalist>
+
+
+              <button class="w-100 mb-3 mt-3 btn btn-lg rounded-3 btn-primary" type="submit">Next step</button>
+
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-target="#CreateCompanyModal" data-bs-toggle="modal">Create company</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="CreateCompanyModal" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Company creation</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+         <div>
+            <div class="" style="text-align: left;">
+                {% if company_form.errors %}
+                    <div class="alert alert-danger" >
+                        <strong>Error!</strong>{{company_form.errors}}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <form method="post" action="{% url 'create-company' %}" class="pt-2" enctype="multipart/form-data">
+        {% csrf_token %}
+          <div class="input-group mb-3 mt-3">
+            <span class="input-group-text" style="width: 22%; color:gray;">Title*</span>
+            <input type="text"
+                   class="form-control"
+                   name="name"
+                   value="{{company_form.name.value}}"
+                   placeholder="ex. Cremas"
+                   required>
+          </div>
+
+          <div class="input-group mt-3">
+            <span class="input-group-text" style="width: 22%; color:gray;">Location</span>
+            <input type="text"
+                   class="form-control"
+                   name="office_loc"
+                   value="{{company_form.office_loc.value}}"
+                   placeholder="ex. Belarus, Minsk"
+                   required>
+          </div>
+          <div class="input-group mt-3">
+              <span class="input-group-text" style="width: 22%; color:gray;" >Description*</span>
+              <textarea class="form-control"
+                        style="height: 10px;"
+                        aria-label="With textarea"
+                        name="description"
+                        placeholder="ex. Responsibilities, required skills, etc"
+                        required></textarea>
+          </div>
+
+          <div class="input-group mt-3">
+              <label class="input-group-text" for="inputGroupFile01" style="width: 22%; color:gray;">Logo</label>
+              <input type="file" class="form-control" id="inputGroupFile01"  lang="en">
+          </div>
+
+          <button class="w-100 mb-3 mt-3 btn btn-lg rounded-3 btn-primary" type="submit">Create company</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-target="#createVacancyModal" data-bs-toggle="modal">Back to company selection</button>
+      </div>
+    </div>
+  </div>
+</div>
