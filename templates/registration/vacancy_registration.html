@@ -2,6 +2,15 @@
 
 {% block content %}
 <div class="bd-example-snippet bd-code-snippet" style="width: 35%; text-align: center; margin: auto;">
+   <div class="" >
+      <div style="text-align: left;">
+          {% if vacancy_form.errors %}
+              <div class="alert alert-danger" >
+                  <strong>Error!</strong>{{vacancy_form.errors}}
+              </div>
+          {% endif %}
+      </div>
+  </div>
   <div class="bd-example">
         <form method="POST">
           {% csrf_token %}
@@ -108,15 +117,15 @@
           <div class="input-group mt-3" style="display: flex; display-direction: column;">
             <span class="input-group-text" style="width: 22%;color:gray;">Contacts</span>
             <div style="width: 78%;">
-              <input type="email" placeholder="Email" class="form-control" style="width: 100%;" id="email">
-            <input type="text" placeholder="Phone number" class="form-control"  id="phone_number">
-            <input type="text" placeholder="Telegram" class="form-control"  id="telegram_name">
-            <input type="text" placeholder="LinkedIn" class="form-control"  id="linkedIn_name">
+              <input type="email" placeholder="Email" class="form-control" style="width: 100%;" id="email" required>
+              <input type="text" placeholder="Phone number" class="form-control"  id="phone_number">
+              <input type="text" placeholder="Telegram" class="form-control"  id="telegram_name">
+              <input type="text" placeholder="LinkedIn" class="form-control"  id="linkedIn_name">
             </div>
 
           </div>
 
-          <button type="submit" class="btn btn-primary m-3">Submit</button>
+          <button type="submit" class="btn-com m-3">Submit</button>
         </form>
   </div>
 </div>

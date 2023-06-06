@@ -1,15 +1,12 @@
 from django.db import models
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
+from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 import json
 from django.core.serializers.json import DjangoJSONEncoder
 from works.models import Company, Schedule, Sphere, Experience, Employment, Currency
 from .managers import UserManager
-
-
-def user_avatar_upload_path(instance, filename):
-    return f"users/{instance.user.id}/{filename}"
 
 
 class User(AbstractBaseUser, PermissionsMixin):
@@ -18,7 +15,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     last_name = models.CharField(max_length=100)
 
     avatar = models.ImageField(
-        null=True, blank=True, upload_to=user_avatar_upload_path, default="users/placeholder.png")
+        null=True, blank=True, upload_to='avatars', default="avatars/icons8-avatar-96.png")
     birth_date = models.DateField(blank=True, null=True)
 
     updated_at = models.DateTimeField(auto_now_add=True)
@@ -59,3 +56,5 @@ class User(AbstractBaseUser, PermissionsMixin):
         currencies = Currency.objects.all()
         return currencies
 
+    def get_absolute_url(self):
+        return reverse('user-profile', args=[self.id])

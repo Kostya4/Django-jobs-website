@@ -2,10 +2,6 @@ from django.db import models
 from django.urls import reverse
 
 
-def company_logo_upload_path(instance, filename):
-    return f"companies/{instance.company.id}/{filename}"
-
-
 class Vacancy(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField(max_length=5000)
@@ -44,13 +40,23 @@ class Vacancy(models.Model):
     def get_absolute_url(self):
         return reverse("vacancy-detail", args=[self.id])
 
+    def get_contacts(self):
+        all_contacts = [str(self.email), str(self.phone_number), str(self.telegram_name), str(self.linkedIn_name)]
+        contacts = [contact for contact in all_contacts if len(contact) != 0]
+        contacts_str = ','.join(contacts)
+        return contacts_str
+
+    @classmethod
+    def quantity_of_vacancies(cls):
+        return len(Vacancy.objects.all())
+
 
 class Company(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, unique=True)
     office_loc = models.CharField(max_length=50)
 
     description = models.TextField(max_length=5000)
-    logo = models.ImageField(null=True, blank=True, upload_to='media/companies', default='')
+    logo = models.ImageField(null=True, blank=True, upload_to='companies', default='')
 
     updated_at = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -58,6 +64,13 @@ class Company(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse("company-detail", args=[self.id])
+
+    @classmethod
+    def quantity_of_companies(cls):
+        return len(Company.objects.all())
 
 
 class Schedule(models.Model):

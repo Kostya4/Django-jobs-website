@@ -1,15 +1,18 @@
 .my-container {
     margin: auto;
     vertical-align: middle;
-    margin-top: 12%;
+    margin-top: 100px;
     width: 60%;
     height: 20%;
-    z-index: 4;
+    z-index: 5;
+    position:absolute; /* добавили */
+	top: 200px;
+	left: 300px;
 
 }
 
 .search-container {
-    width: 84%;
+    width: 80%;
     float: left;
 }
 
@@ -30,7 +33,7 @@
 }
 
 .wide-search-btn {
-    width: 5%;
+    width: 6%;
     margin-left: 1%;
 }
 
@@ -39,11 +42,11 @@
 }
 
 .search-employee {
-    margin: 10px;
-    padding-top: 10px;
+
     color: white;
 }
 
 .search-employee:hover {
     color: MediumPurple;
 }
+

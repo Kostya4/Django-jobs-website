@@ -11,4 +11,8 @@ urlpatterns = [
     path('company-<int:company_id>/create-vacancy/', CreateVacancyView.as_view(), name='create-vacancy'),
     path('companies/company-<int:id>/', CompanyDetailView.as_view(), name='company-detail'),
     path('vacancies/vacancy-<int:id>/', VacancyDetailView.as_view(), name='vacancy-detail'),
+    path('search/', DetailSearchView.as_view(), name='detail-search'),
+    path('company-search/', CompanySearchView.as_view(), name='company-search'),
+    path('vacancy-search/', VacancySearchView.as_view(), name='vacancy-search'),
+
 ]

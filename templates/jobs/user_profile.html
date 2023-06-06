@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css_additional %}
+    <link rel="stylesheet" href="{% static 'css/user_profile.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="my-3 p-3 bg-body rounded">
+    <div class="main-container">
+            <div class="card mt-2">
+                  <div class="card-body my-card-body">
+                      <div class="card mt-2 div-user-info" >
+                          <div class="card-body">
+                              <div class="user-info">
+                                  {% if user.avatar %}
+                                      <div class="div-img-avatar">
+                                        <img src="{{ user.avatar.url }}" class="img-avatar" alt="No image">
+                                      </div>
+                                  {% endif %}
+                                  <div class="user-info-container">
+                                      <div class="base-elem-div">
+                                        Name: {{user}}
+                                      </div>
+                                      <div class="base-elem-div">
+                                        Email: {{user.email}}
+                                      </div>
+                                  </div>
+                                  <div>
+                                      <button type="button"
+                                              class="btn-actions placement"
+                                              data-bs-toggle="dropdown"
+                                              aria-expanded="false">
+                                                    ⋮
+                                      </button>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="second-container">
+                        <div class="w-100">
+                              <div class="bg-body rounded mb-2" style="max-width:750px; margin: 0 auto;">
+                                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                  <li class="nav-item" role="presentation">
+                                    <button class="nav-link active"
+                                            id="home-tab"
+                                            data-bs-toggle="tab"
+                                            data-bs-target="#posts-tab-pane"
+                                            type="button"
+                                            role="tab"
+                                            aria-controls="home-tab-pane"
+                                            aria-selected="true"
+                                            style="color: Black">
+                                        Vacancies ({{my_vacancies.count}})
+                                    </button>
+                                  </li>
+                                  <li class="nav-item" role="presentation">
+                                    <button class="nav-link"
+                                            id="profile-tab"
+                                            data-bs-toggle="tab"
+                                            data-bs-target="#likes-tab-pane"
+                                            type="button" role="tab"
+                                            aria-controls="profile-tab-pane"
+                                            aria-selected="false"
+                                            style="color: Black">
+                                        Companies ({{my_companies.count}})
+                                    </button>
+                                  </li>
+                                </ul>
+                                <div class="tab-content mt-2" id="myTabContent">
+                                  <div class="tab-pane fade show active"
+                                       id="posts-tab-pane"
+                                       role="tabpanel"
+                                       aria-labelledby="home-tab"
+                                       tabindex="0"
+                                       >
+                                      {% for vacancy in my_vacancies %}
+                                        <div class="vacancy-display">
+                                              <div class="div-url-decoration">
+                                                  <a class="url-decoration" href="{{ vacancy.get_absolute_url }}">
+                                                      {{vacancy.title}}</a>
+                                                        — {{ vacancy.company }}
+                                              </div>
+                                             <div class="btn-group drop">
+                                              <button type="button" class="btn-actions"
+                                                      data-bs-toggle="dropdown" aria-expanded="false">
+                                                ⋮
+                                              </button>
+                                              <ul class="dropdown-menu">
+                                                    <li><a class="my-dropdown-item" href="#">Edit</a></li>
+                                                    <li><hr class="dropdown-divider"></li>
+                                                    <li><a class="logout" href="#">Delete</a></li>
+                                              </ul>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                  </div>
+                                  <div class="tab-pane fade"
+                                       id="likes-tab-pane"
+                                       role="tabpanel"
+                                       aria-labelledby="profile-tab"
+                                       tabindex="0">
+                                        {% for company in my_companies %}
+                                        <div class="vacancy-display">
+                                              <div class="div-url-decoration">
+                                                  <a class="url-decoration" href="{{ company.get_absolute_url }}">
+                                                      {{company.name}}</a>
+                                              </div>
+
+                                             <div class="btn-group drop">
+                                              <button type="button" class="btn-actions"
+                                                      data-bs-toggle="dropdown" aria-expanded="false">
+                                                ⋮
+                                              </button>
+                                              <ul class="dropdown-menu">
+                                                    <li><a class="my-dropdown-item" href="#">Edit</a></li>
+                                                    <li><hr class="dropdown-divider"></li>
+                                                    <li><a class="logout" href="#">Delete</a></li>
+                                              </ul>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                      </div>
+                  </div>
+            </div>
+    </div>
+</div>
+
+
+
+
+
+{% endblock %}

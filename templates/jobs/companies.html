@@ -1,11 +1,49 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block css_additional %}
+    <link rel="stylesheet" href="{% static 'works/css/companies.css' %}">
+{% endblock %}
 
 {% block content %}
+<div class="my-3 p-3 bg-body mx-5">
+    <div class="border-bottom pb-2 mb-0" style="display: flex; flex-direction: row;">
+        <h3>All Companies ({{companies.count}})</h3>
+        {% if request_msg %}
+            <h5 style="text-align: center; width: 80%;">{{request_msg}}</h5>
+        {% endif %}
+    </div>
+    <div class="border-bottom pb-2  pt-2 mb-0" >
+        <form method="POST" action="{% url 'company-search' %}" style="display: flex; width: 100%;">
+            {% csrf_token %}
+            <input type="search"
+             class="search-label form-control text-bg-light"
+             style="width: 50%; height: 40px;"
+             list="datalistOptions"
+             id="exampleDataList"
+             placeholder="Type the title of company"
+             name="company_name"
+             value="{{ company_form.name }}"
+             >
+          <datalist id="datalistOptions">
+              {% for company in user.get_all_companies %}
+                  <option value="{{ company.name }}">
+              {% endfor %}
+          </datalist>
+          <button class="btn  rounded-3 btn-primary" style="background-color: MediumPurple; border: 0;
+            margin-left: 5px; width: 5%; height: 40px; padding: auto; vertical-align: middle;" type="submit">Search</button>
+        </form>
 
-<ul class="list-group">
-    {% for company in companies %}
-          <li class="list-group-item">{{company.name}}</li>
-    {% endfor %}
-</ul>
+    </div>
+
+    <div class="container text-center mt-2">
+        <div style=" display: grid; grid-template-columns: repeat(auto-fill, 30%); justify-content: space-between; flex-flow: wrap;">
+            {% for company in companies %}
+                  <a class="company-url" href="{{ company.get_absolute_url }}" >{{ company.name }}, {{ company.vacancies.all.count }}</a>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
 
 {% endblock %}

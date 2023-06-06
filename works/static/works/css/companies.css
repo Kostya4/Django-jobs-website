@@ -1,0 +1,13 @@
+.company-url {
+    margin-left: 1%;
+    margin-top:2%;
+    text-decoration: underline;
+    color: MediumPurple;
+    text-align: left;
+    display: block;
+    width: fit-content;
+}
+
+.company-url:hover {
+    color: Black;
+}

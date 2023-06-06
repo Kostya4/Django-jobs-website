@@ -1,28 +1,62 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block css_additional %}
+    <link rel="stylesheet" href="{% static 'works/css/vacancies.css' %}">
+{% endblock %}
 
 {% block content %}
+    <div class="mt-3 p-3 bg-body">
+        <div style=" margin: auto; width: 80%;">
+                <div class="card mt-2">
+                  <div class="card-body">
+                      <h3 class="border-bottom pb-2 mb-0">{{ vacancy.title }}</h3>
+                      <p style="color: grey; margin-left: auto; margin-right: 1%; margin-top: -3.5%; float: right;">{{ vacancy.updated_at|date:"DATETIME_FORMAT"}} </p>
+                          <div style="display: flex; margin: 1%;">
+                              <img src="{% static 'works/images/icons8-company-32.png' %}" alt="no">
+                              <p class="card-text" style="margin-left: 1%; margin-top: 0.5%;">
+                                  <span style="color: grey; margin-right: 5px;">Company:</span> {{ vacancy.company }}</p>
+                          </div>
+                     {% if vacancy.location %}
+                          <div style="display: flex; margin: 1%;">
+                              <img src="{% static 'works/images/icons8-location-32.png' %}" alt="no">
+                              <p class="card-text" style="margin-left: 1%; margin-top: 0.5%;"><span style="color: grey; margin-right: 5px;">Location:</span> {{ vacancy.location }}</p>
+                          </div>
+                     {% endif %}
+                          <div style="display: flex; margin: 1%;">
+                              <img src="{% static 'works/images/icons8-internship-32.png' %}" alt="no">
+                              <p class="card-text" style="margin-left: 1%; margin-top: 0.5%;"><span style="color: grey; margin-right: 5px;">Experience:</span> {{ vacancy.experience }}</p>
+                          </div>
+                      {% if vacancy.get_salary %}
+                          <div style="display: flex; margin: 1%;">
+                              <img src="{% static 'works/images/icons8-salary-32.png' %}" alt="no">
+                              <p class="card-text" style="margin-left: 1%; margin-top: 0.5%;"><span style="color: grey; margin-right: 5px;">Salary:</span> {{ vacancy.get_salary }}</p>
+                          </div>
+                      {% endif %}
+                      <div style="display: flex; margin: 1%;">
+                              <img src="{% static 'works/images/icons8-schedule-32.png' %}" alt="no">
+                              <p class="card-text" style="margin-left: 1%; margin-top: 0.5%;"><span style="color: grey; margin-right: 5px;">Schedule:</span> {{ vacancy.schedule }}, {{ vacancy.employment }}</p>
+                      </div>
 
+                      <div  style="display: flex; margin: 1%;">
+                              <img src="{% static 'works/images/icons8-contacts-32.png' %}" alt="no">
+                              <p class="card-text" style="margin-left: 1%; margin-top: 0.5%;"><span style="color: grey; margin-right: 5px;">Contacts:</span>
+                              {{ vacancy.get_contacts }}</p>
+                      </div>
 
-    <div class="album py-5 bg-light" >
-        <div class="container" >
-          <div class=" mr-md-1 pt-1 px-1 pt-md-1 px-md-1 ">
-            <div class="bg-light  mx-auto" style="width: 80%; height: 500px; border-radius: 21px 21px 0 0;">
-            <div>
-                <div class="card shadow-sm " >
-                    <img src="{{ book.cover.url }}" class="rounded mx-auto d-block mt-4" width="20%">
-                    <div class="card-body" >
-                        <h4 class="card-text text-center">+++++</h4>
-                        <h5 class="card-text text-center">Summary</h5>
-                        <p class="card-text">+++++++</p>
-                    </div>
+                      <div class="border-bottom pb-3 mb-0" style="display: flex; margin: 1%;">
+                        <a href="#" class="btn-default" style="margin-left: 3px; margin-top: 5px;">Apply</a>
+                      </div>
+
+                      <div style="display: flex; margin: 1%;">
+                              <img src="{% static 'works/images/icons8-bookmark-32.png' %}" style='height: 32px;'alt="no">
+                              <p class="card-text" style="margin-left: 1%; margin-top: 0.5%;"><span style="color: grey; margin-right: 5px;">Description:</span>
+                              {{vacancy.description}}</p>
+                      </div>
+
+                  </div>
                 </div>
-            </div>
-            </div>
-          </div>
 
-
-            </div>
         </div>
-    </div>
-
+</div>
 {% endblock %}

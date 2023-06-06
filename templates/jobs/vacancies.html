@@ -1,43 +1,114 @@
 {% extends 'base.html' %}
 {% load static %}
+
+{% block css_additional %}
+    <link rel="stylesheet" href="{% static 'works/css/vacancies.css' %}">
+{% endblock %}
+
 {% block content %}
 
-<div class="my-3 p-3 bg-body rounded shadow-sm">
-    <h6 class="border-bottom pb-2 mb-0">All Vacancies</h6>
-    <div style=" display: flex; flex-direction: row; justify-content: flex-start;">
-        <div class="card mt-2" style="width: 25%; height: 500px;">
-            search-block
-        </div>
 
+<div class="my-3 p-3 bg-body mx-5">
+    <div class="border-bottom pb-2 mb-0 msg-div-inform">
+        <h3>All Vacancies ({{vacancies.count}})</h3>
+        {% if request_msg %}
+            <h5 class="msg-inform">{{request_msg}}</h5>
+        {% endif %}
+    </div>
+    <div class="main-container mt-2">
+        <div class="card mt-2 w-25" style="height: fit-content">
+            <span class="span-filter">Filter</span>
+            <form method="POST" action="{% url 'vacancy-search' %}">
+                {% csrf_token %}
+                  <div class="input-group mt-3 px-2">
+                    <span class="input-group-text span-for-input">Category</span>
+                    <select class="form-select select-menu" id="categorySelect" name="work_sphere">
+                    <option disabled selected hidden></option>
+                      {% for sphere in user.get_all_spheres %}
+                        <option value="{{sphere.id}}">{{sphere}}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+
+                  <div class="input-group mt-3 px-2">
+                    <span class="input-group-text span-for-input">Schedule</span>
+                    <select class="form-select select-menu" id="scheduleSelect" name="schedule">
+                      <option disabled selected hidden></option>
+                      {% for schedule in user.get_all_schedules %}
+                        <option value="{{schedule.id}}">{{schedule}}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+
+                  <div class="input-group mt-3 px-2">
+                    <span class="input-group-text span-for-input">Experience</span>
+                    <select class="form-select select-menu" id="experienceSelect" name="experience">
+                    <option disabled selected hidden></option>
+                      {% for experience in user.get_all_experiences %}
+                        <option value="{{experience.id}}">{{experience}}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+
+                  <div class="input-group mt-3 px-2">
+                    <span class="input-group-text span-for-input">Employment</span>
+                    <select class="form-select select-menu" id="employmentSelect" name="employment">
+                    <option disabled selected hidden></option>
+                      {% for employment in user.get_all_employments %}
+                        <option value="{{employment.id}}">{{employment}}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+
+                  <div class="input-group mt-3 px-2" >
+                    <span class="input-group-text" style="color:gray;">Salary</span>
+                    <span class="input-group-text px-2" style="max-width: 55x; color:gray;">From</span>
+                    <input type="number" class="form-control" name="low_salary" id="low_salary">
+                    <select class="form-select" id="currencySelect" name="currency" style="color: gray; max-width: 80px;">
+                        {% for currency in user.get_all_currencies%}
+                          <option value="{{currency.id}}">{{currency}}</option>
+                        {% endfor %}
+                    </select>
+                  </div>
+                  <div class="px-2">
+                     <button type="submit" class="btn-find">Find job</button>
+                  </div>
+
+            </form>
+        </div>
         <div style=" margin-left: auto; margin-right: 5%; width: 65%;">
+
             {% for vacancy in vacancies %}
                 <div class="card mt-2">
                   <div class="card-body">
-                    <h5 class="card-title">{{vacancy.title}}</h5>
-                    <p style="color: grey; margin-left: auto; margin-right: 1%; margin-top: -5%; float: right;">{{ vacancy.updated_at|date:"DATETIME_FORMAT"}} </p>
-                          <div style="display: flex; margin: 1%;">
-                              <img src="{% static 'works/img/icons8-company-32.png' %}" alt="no">
-                              <p class="card-text" style="margin-left: 1%; margin-top: 0.5%;">
-                                  <span style="color: grey; margin-right: 5px;">Company:</span> {{ vacancy.company }}</p>
+                    <h4 class="card-title border-bottom pb-2 mb-0">{{vacancy.title}}</h4>
+                    <p class="p-time-update">{{ vacancy.updated_at|date:"DATETIME_FORMAT"}} </p>
+                          <div class="div-part-vacancy-container">
+                              <img src="{% static 'works/images/icons8-company-32.png' %}" alt="no">
+                              <p class="card-text p-card-text">
+                                  <span class="span-text">Company:</span> {{ vacancy.company }}</p>
                           </div>
                      {% if vacancy.location %}
-                          <div style="display: flex; margin: 1%;">
-                              <img src="{% static 'works/img/icons8-location-32.png' %}" alt="no">
-                              <p class="card-text" style="margin-left: 1%; margin-top: 0.5%;"><span style="color: grey; margin-right: 5px;">Location:</span> {{ vacancy.location }}</p>
+                          <div class="div-part-vacancy-container">
+                              <img src="{% static 'works/images/icons8-location-32.png' %}" alt="no">
+                              <p class="card-text p-card-text"><span class="span-text">Location:</span>
+                                  {{ vacancy.location }}</p>
                           </div>
                      {% endif %}
-                          <div style="display: flex; margin: 1%;">
-                              <img src="{% static 'works/img/icons8-internship-32.png' %}" alt="no">
-                              <p class="card-text" style="margin-left: 1%; margin-top: 0.5%;"><span style="color: grey; margin-right: 5px;">Experience:</span> {{ vacancy.experience }}</p>
+                          <div class="div-part-vacancy-container">
+                              <img src="{% static 'works/images/icons8-internship-32.png' %}" alt="no">
+                              <p class="card-text p-card-text"><span class="span-text">Experience:</span>
+                                  {{ vacancy.experience }}</p>
                           </div>
                       {% if vacancy.get_salary %}
-                          <div style="display: flex; margin: 1%;">
-                              <img src="{% static 'works/img/icons8-salary-32.png' %}" alt="no">
-                              <p class="card-text" style="margin-left: 1%; margin-top: 0.5%;"><span style="color: grey; margin-right: 5px;">Salary:</span> {{ vacancy.get_salary }}</p>
+                          <div class="div-part-vacancy-container">
+                              <img src="{% static 'works/images/icons8-salary-32.png' %}" alt="no">
+                              <p class="card-text p-card-text"><span class="span-text">Salary:</span>
+                                  {{ vacancy.get_salary }}</p>
                           </div>
                       {% endif %}
                   </div>
-                    <a href="{{ vacancy.get_absolute_url }}" class="btn bth-primary" style="width: 15%; margin-bottom: 1%; margin-left: 1%; background-color: Lavender;">More info</a>
+                    <a href="{{ vacancy.get_absolute_url }}" class="btn-default">More info</a>
                 </div>
             {% endfor %}
         </div>

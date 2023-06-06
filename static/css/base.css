@@ -1,0 +1,91 @@
+html {
+  height: 100%;
+}
+
+header {
+    background-color: Lavender;
+    height: 70px;
+}
+
+
+body {
+  margin: 0;
+  color: #fff;
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+
+footer {
+  background: Lavender;
+}
+
+.li-nav-text {
+    color: MediumPurple;
+    vertical-align: middle;
+    text-decoration: none;
+    background-color: Lavender;
+    border-radius: 10px;
+    padding: 5px 5px 5px 5px;
+    margin-left: 10px;
+    border: solid;
+    border-color: Lavender;
+}
+
+.li-nav-text:hover {
+    text-decoration: underline;
+}
+
+.active {
+    background-color: white;
+    border-radius: 10px;
+    border: solid;
+    border-color: White;
+}
+
+.btn-com {
+    color: White;
+    vertical-align: middle;
+    text-decoration: none;
+    background-color: MediumPurple;
+    border-radius: 5px;
+    border: 0;
+    padding: 5px 10px 5px 10px;
+    margin-right: 5px;
+}
+
+.btn-com:hover {
+   opacity: 95%;
+   text-decoration: underline;
+
+}
+
+.my-dropdown-item {
+    text-decoration: none;
+    color: MediumPurple;
+    margin-left: 20px;
+}
+
+.my-dropdown-item:hover {
+    text-decoration: underline;
+s}
+
+.logout {
+text-decoration: none;
+    color: Red;
+    margin-left: 20px;
+}
+
+.logout:hover {
+    text-decoration: underline;
+s}
+
+.url-base {
+    text-decoration: none;
+    color: MediumPurple;
+}
+
+.url-base:hover {
+    text-decoration: underline;
+}

@@ -5,6 +5,8 @@ from django.shortcuts import render, redirect
 from django.views import View
 from django.views.generic import TemplateView
 from users.forms import CustomUserCreationForm, LoginUserForm
+from users.models import User
+from works.models import Company, Vacancy
 
 
 class SignUpView(View):
@@ -44,3 +46,14 @@ class LogoutUserView(LogoutView):
     def get(self, request):
         logout(request)
         return redirect('home')
+
+
+class UserProfile(TemplateView):
+    template_name = 'jobs/user_profile.html'
+
+    def get(self, request, user_id):
+        my_companies = Company.objects.order_by('-updated_at').filter(creator=request.user)
+        my_vacancies = Vacancy.objects.order_by('-updated_at').filter(creator=request.user)
+        params = {'my_companies': my_companies,
+                  'my_vacancies': my_vacancies}
+        return render(request, self.template_name, params)

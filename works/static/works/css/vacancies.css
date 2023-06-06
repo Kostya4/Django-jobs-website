@@ -1,0 +1,96 @@
+.btn-default {
+    width: 10%;
+    min-width: 120px;
+    color: Indigo;
+    vertical-align: middle;
+    text-decoration: none;
+    background-color: Lavender;
+    border-radius: 5px;
+    border: 0;
+    padding: 5px 10px 5px 10px;
+    margin-right: 5px;
+    text-align: center;
+    margin-top: -15px;
+    margin-left: 25px;
+    margin-bottom: 10px;
+}
+
+
+.btn-default:hover {
+   filter: brightness(90%);
+}
+
+.msg-div-inform {
+    display: flex;
+    flex-direction: row;
+}
+
+.msg-inform {
+  text-align: center;
+  width: 80%;
+}
+
+.main-container {
+   display: flex;
+   flex-direction: row;
+   justify-content: flex-start;
+}
+
+.span-filter {
+    background-color: Lavender;
+    text-align: center;
+    padding: 5px;
+    color: Grey;
+}
+
+.span-for-input {
+    min-width: 121px;
+    color:gray;
+}
+
+.select-menu {
+    color: black;
+}
+
+.btn-find {
+    width: 100%;
+    min-width: 120px;
+    color: White;
+    text-decoration: none;
+    background-color: MediumPurple;
+    border-radius: 5px;
+    border: 0;
+    padding: 5px 10px 5px 10px;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+
+
+}
+
+.btn-find:hover {
+   opacity: 90%;
+}
+
+.p-time-update {
+    color: grey;
+    margin-left: auto;
+    margin-right: 1%;
+    margin-top: -4%;
+    float: right;
+}
+
+.div-part-vacancy-container {
+    display: flex;
+    margin: 1%;
+}
+
+.p-card-text {
+    margin-left: 1%;
+    margin-top: 0.5%;
+}
+
+.span-text {
+    color: grey;
+    margin-right: 5px;
+}
