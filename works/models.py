@@ -29,11 +29,11 @@ class Vacancy(models.Model):
 
     def get_salary(self):
         if self.low_salary and self.high_salary:
-            return f"From {self.low_salary} to {self.high_salary} {self.currency}"
+            return f"From {self.low_salary} to {self.high_salary} {self.currency if not None else ' '}"
         elif self.low_salary:
-            return f"From {self.low_salary} {self.currency}"
+            return f"From {self.low_salary} {self.currency if None else ' '}"
         elif self.high_salary:
-            return f"Up to {self.high_salary} {self.currency}"
+            return f"Up to {self.high_salary} {self.currency if None else ' '}"
         else:
             return False
 

@@ -84,7 +84,7 @@
                     <h4 class="card-title border-bottom pb-2 mb-0">{{vacancy.title}}</h4>
                     <p class="p-time-update">{{ vacancy.updated_at|date:"DATETIME_FORMAT"}} </p>
                           <div class="div-part-vacancy-container">
-                              <img src="{% static 'works/images/icons8-company-32.png' %}" alt="no">
+                              <img src="{% static 'works/images/icons8-company-32.png' %}" alt="no" style="max-height: 32px;">
                               <p class="card-text p-card-text">
                                   <span class="span-text">Company:</span> {{ vacancy.company }}</p>
                           </div>

@@ -88,8 +88,7 @@ class CreateCompanyView(View):
             new_company = company_form.save()
             return redirect('create-vacancy', new_company.id)
         else:
-            return redirect(self.request.META.get('HTTP_REFERER'), {'company_errors': company_form.errors})
-
+            return render(request, 'jobs/home.html', {'company_form': company_form})
 
 
 class CreateVacancyView(TemplateView):
@@ -112,10 +111,10 @@ class CreateVacancyView(TemplateView):
             new_vacancy = vacancy_form.save(commit=False)
             new_vacancy.creator = request.user
             new_vacancy.company = company_name
-            new_vacancy = new_vacancy.save()
-            return redirect('company-detail', company_id)
+            new_vacancy.save()
+            return redirect('vacancy-detail', new_vacancy.id)
         else:
-            return redirect('create-vacancy', {'errors': vacancy_form.errors})
+            return render(request, 'registration/vacancy_registration.html', {'vacancy_form': vacancy_form})
 
 
 class ChooseCompanyView(View):
@@ -125,7 +124,7 @@ class ChooseCompanyView(View):
             company = Company.objects.get(name=request.POST['name'])
             return redirect('create-vacancy', company.id)
         except:
-            messages.info(request, 'No company')
+            messages.info(request, 'The company you selected does not exist, but you can always create one')
             return redirect(self.request.META.get('HTTP_REFERER'), messages)
 
 

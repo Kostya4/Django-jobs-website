@@ -1,13 +1,12 @@
 .my-container {
     margin: auto;
     vertical-align: middle;
-    margin-top: 100px;
+    margin: auto;
+    margin-top: -25%;
     width: 60%;
     height: 20%;
     z-index: 5;
-    position:absolute; /* добавили */
-	top: 200px;
-	left: 300px;
+
 
 }
 
@@ -17,7 +16,8 @@
 }
 
 .search-submit-btn {
-    width: 10%;
+    width: 100px;
+    min-width: fit-content;
     margin-left: 1%;
     float: left;
     background: BlueViolet;
@@ -33,7 +33,8 @@
 }
 
 .wide-search-btn {
-    width: 6%;
+    width: 50px;
+    min-width: fit-content;
     margin-left: 1%;
 }
 

@@ -38,7 +38,7 @@ class LoginUserView(LoginView):
             return redirect('home')
         except:
             login_form.errors_message = "Enter the correct email and password for authorization"
-            return render(request, 'jobs/home.html', {'login_form': login_form, 'not_valid': True})
+            return render(request, 'jobs/home.html', {'login_form': login_form})
 
 
 class LogoutUserView(LogoutView):

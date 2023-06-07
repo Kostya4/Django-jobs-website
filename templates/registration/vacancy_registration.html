@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="bd-example-snippet bd-code-snippet" style="width: 35%; text-align: center; margin: auto;">
-   <div class="" >
+   <div class="mt-3" >
       <div style="text-align: left;">
           {% if vacancy_form.errors %}
               <div class="alert alert-danger" >
@@ -97,10 +97,10 @@
           <div class="input-group mt-3" >
             <span class="input-group-text" style="width: 22%; color:gray;">Salary</span>
             <span class="input-group-text" style="width: 12%; color:gray;">From</span>
-            <input type="text" class="form-control" id="low_salary">
+            <input type="number" class="form-control" id="low_salary" name="low_salary">
             <span class="input-group-text" style="width: 8%; color:gray;">To</span>
-            <input type="text" class="form-control" id="high_salary">
-            <select class="form-select" id="currencySelect" style="color: gray;">
+            <input type="number" class="form-control" id="high_salary" name="high_salary">
+            <select class="form-select" id="currencySelect" style="color: gray;" name="currency">
               <option value="" disabled selected hidden>Select</option>
                 {% for currency in user.get_all_currencies%}
                   <option value="{{currency.id}}">{{currency}}</option>
@@ -110,17 +110,17 @@
 
           <div class="input-group mt-3">
             <span class="input-group-text" style="width: 22%; color:gray;">Location</span>
-            <input type="text" class="form-control" id="location" placeholder="ex. Belarus, Minsk, Starkovskay 11">
+            <input type="text" class="form-control" placeholder="ex. Belarus, Minsk, Starkovskay 11" name="location">
           </div>
 
 
           <div class="input-group mt-3" style="display: flex; display-direction: column;">
             <span class="input-group-text" style="width: 22%;color:gray;">Contacts</span>
             <div style="width: 78%;">
-              <input type="email" placeholder="Email" class="form-control" style="width: 100%;" id="email" required>
-              <input type="text" placeholder="Phone number" class="form-control"  id="phone_number">
-              <input type="text" placeholder="Telegram" class="form-control"  id="telegram_name">
-              <input type="text" placeholder="LinkedIn" class="form-control"  id="linkedIn_name">
+              <input type="email" placeholder="Email" class="form-control" style="width: 100%;"name="email" required>
+              <input type="text" placeholder="Phone number" class="form-control" name="phone_number">
+              <input type="text" placeholder="Telegram" class="form-control"   name="telegram_name">
+              <input type="text" placeholder="LinkedIn" class="form-control"  name="linkedIn_name">
             </div>
 
           </div>

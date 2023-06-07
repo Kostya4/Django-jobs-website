@@ -4,7 +4,8 @@ html {
 
 header {
     background-color: Lavender;
-    height: 70px;
+    min-height: 70px;
+    height: fit-content;
 }
 
 
@@ -21,7 +22,7 @@ footer {
   background: Lavender;
 }
 
-.li-nav-text {
+.my-li-nav-text {
     color: MediumPurple;
     vertical-align: middle;
     text-decoration: none;
@@ -30,18 +31,17 @@ footer {
     padding: 5px 5px 5px 5px;
     margin-left: 10px;
     border: solid;
+    border-width: 1px;
     border-color: Lavender;
 }
 
-.li-nav-text:hover {
+.my-li-nav-text:hover {
     text-decoration: underline;
 }
 
 .active {
     background-color: white;
-    border-radius: 10px;
-    border: solid;
-    border-color: White;
+    border-color: white;
 }
 
 .btn-com {

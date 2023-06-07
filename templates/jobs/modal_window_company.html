@@ -1,10 +1,3 @@
-{% if messages %}
-        {% for message in messages %}
-         {% if message.tags %}  <script>$('#createVacancyModal').modal(show)</script> {% endif %}
-
-        {% endfor %}
-
-    {% endif %}
 <div class="modal fade" id="createVacancyModal" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
@@ -14,6 +7,16 @@
       </div>
 
       <div class="modal-body">
+         {% if messages %}
+                {% for message in messages %}
+                    <div style="text-align: left;">
+                        <div class="alert alert-danger" >
+                            <strong>Error! </strong>{{ message}}
+                        </div>
+                    </div>
+                {% endfor %}
+         {% endif %}
+
          <form method="post" action="{% url 'choose-company' %}" class="pt-2" enctype="multipart/form-data">
               {% csrf_token %}
               <input type="search"
@@ -22,7 +25,7 @@
                      id="exampleDataList"
                      placeholder="Type the title of company"
                      name="name"
-                     value="{{ company_form.name }}"
+                     value="{{ company_form.name.value }}"
                      required>
 
               <datalist id="datalistOptions">
@@ -52,7 +55,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-         <div>
+        <div>
             <div class="" style="text-align: left;">
                 {% if company_form.errors %}
                     <div class="alert alert-danger" >
@@ -61,7 +64,6 @@
                 {% endif %}
             </div>
         </div>
-
         <form method="post" action="{% url 'create-company' %}" class="pt-2" enctype="multipart/form-data">
         {% csrf_token %}
           <div class="input-group mb-3 mt-3">
@@ -69,7 +71,7 @@
             <input type="text"
                    class="form-control"
                    name="name"
-                   value="{{company_form.name.value}}"
+                   value="{{ company_form.name.value }}"
                    placeholder="ex. Cremas"
                    required>
           </div>
@@ -79,7 +81,7 @@
             <input type="text"
                    class="form-control"
                    name="office_loc"
-                   value="{{company_form.office_loc.value}}"
+                   value="{{ company_form.office_loc.value }}"
                    placeholder="ex. Belarus, Minsk"
                    required>
           </div>
